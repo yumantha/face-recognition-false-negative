@@ -19,6 +19,9 @@ while True:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
         id, conf = recognizer.predict(gray[y:y+h, x:x+w])
 
+        if conf < 50:
+            id = 'not recognized'
+
         cv2.cv.PutText(cv2.cv.fromarray(img), str(id), (x, y+h), font, 255)
 
     cv2.imshow('Face', img)
